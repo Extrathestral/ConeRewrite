@@ -17,7 +17,7 @@ load_dotenv()
 token = os.getenv('token')
 @bot.event
 async def on_ready():
-    print('We have logged in as {0.user}'.format(bot))
+    print(f'We have logged in as {bot.user.name}')
 
 @bot.event
 async def on_message(message):
@@ -26,13 +26,13 @@ async def on_message(message):
         lastMessage = messages[-1]
         if lastMessage.author.id == 250797109022818305 and codyExempt:
             return
-        messageTS = datetime.datetime.timestamp(message.created_at)*1000
-        lastMessageTS = datetime.datetime.timestamp(lastMessage.created_at)*1000
-        if messageTS < lastMessageTS+500 and "mcfuck!" not in lastMessage.content.lower():
-            await message.channel.set_permissions(message.author, send_messages=False)
-            await message.delete()
-            await sleep(1)
-            await message.channel.set_permissions(message.author, send_messages=True)
+        # messageTS = datetime.datetime.timestamp(message.created_at)*1000
+        # lastMessageTS = datetime.datetime.timestamp(lastMessage.created_at)*1000
+        # if messageTS < lastMessageTS+500 and "mcfuck!" not in lastMessage.content.lower():
+        #     await message.channel.set_permissions(message.author, send_messages=False)
+        #     await message.delete()
+        #     await sleep(1)
+        #     await message.channel.set_permissions(message.author, send_messages=True)
 
     attachments = message.attachments
     if len(attachments) != 0:
